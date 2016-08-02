@@ -1,5 +1,6 @@
 package com.example.jevan.conwaygol.Game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,10 +10,15 @@ import java.util.List;
  */
 public interface GameOfLife {
 
-    void setInitialState(List<List<Boolean>> grid);
+    void setInitialState(List<ArrayList<Boolean>> grid);
 
-    List<List<Boolean>> getState();
+    List<ArrayList<Boolean>> getState();
 
     void timeStep();
+
+    /**
+     * Print the current state to the screen
+     */
+    void print();
 }
 
