@@ -1,5 +1,6 @@
 package com.example.jevan.conwaygol.Game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,20 +10,25 @@ import java.util.List;
  * Created by jevan on 8/2/2016.
  */
 public class CellDataGame implements GameOfLife {
-    private List<List<GridCell>> grid;
+    private List<ArrayList<GridCell>> grid;
 
     @Override
-    public List<List<Boolean>> getState() {
+    public List<ArrayList<Boolean>> getState() {
         return null;
     }
 
     @Override
-    public void setState(List<List<Boolean>> grid) {
+    public void setInitialState(List<ArrayList<Boolean>> grid) {
 
     }
 
     @Override
     public void timeStep() {
+
+    }
+
+    @Override
+    public void print() {
 
     }
 

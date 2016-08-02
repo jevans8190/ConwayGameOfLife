@@ -1,5 +1,6 @@
 package com.example.jevan.conwaygol.Game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,10 +10,19 @@ import java.util.List;
  */
 public interface GameOfLife {
 
-    void setState(List<List<Boolean>> grid);
+    void setInitialState(List<ArrayList<Boolean>> grid);
 
-    List<List<Boolean>> getState();
+    List<ArrayList<Boolean>> getState();
 
+    /**
+     * Apply and save changes to the current state
+     * based on Conway's rules
+     */
     void timeStep();
+
+    /**
+     * Print the current state to the screen
+     */
+    void print();
 }
 
