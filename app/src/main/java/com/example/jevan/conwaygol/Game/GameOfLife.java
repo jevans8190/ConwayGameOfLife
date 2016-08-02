@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface GameOfLife {
 
-    void setState(List<List<Boolean>> grid);
+    void setInitialState(List<List<Boolean>> grid);
 
     List<List<Boolean>> getState();
 
