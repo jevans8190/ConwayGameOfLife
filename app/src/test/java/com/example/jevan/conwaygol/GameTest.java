@@ -7,6 +7,8 @@ import com.google.common.primitives.Booleans;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,8 @@ public class GameTest extends TestCase {
         }
     }
 
-    public void testTimeStep1() {
+    @Test
+    public void testTimeStep1() throws Exception {
         // define the correct next state of initial1
         List<ArrayList<Boolean>> correct = new ArrayList<>(Lists.newArrayList(
                 new ArrayList<>(Booleans.asList(false, false, false)),  // 0 0 0
@@ -48,10 +51,14 @@ public class GameTest extends TestCase {
         // time-step each game
         // compare new state with correct
         for (GameOfLife g : games) {
+            System.out.println("Initial:");
+            g.print();
             g.timeStep();
+            System.out.println("Next gen:");
             g.print();
             compareStates(g.getState(), correct);
         }
+        System.out.println("Pass!");
     }
 
     public void compareStates(List<ArrayList<Boolean>> result, List<ArrayList<Boolean>> correct) {

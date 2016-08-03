@@ -14,6 +14,10 @@ public interface GameOfLife {
 
     List<ArrayList<Boolean>> getState();
 
+    /**
+     * Apply and save changes to the current state
+     * based on Conway's rules
+     */
     void timeStep();
 
     /**

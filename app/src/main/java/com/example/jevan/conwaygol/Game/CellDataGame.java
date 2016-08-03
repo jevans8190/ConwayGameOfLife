@@ -27,6 +27,11 @@ public class CellDataGame implements GameOfLife {
 
     }
 
+    @Override
+    public void print() {
+
+    }
+
     /**
      * Gridcell (Inner class for CellDataGame)
      *
