@@ -1,6 +1,6 @@
 package com.example.jevan.conwaygol;
 
-import com.example.jevan.conwaygol.Game.GameOfLife;
+import com.example.jevan.conwaygol.Game.BaseGameOfLife;
 import com.example.jevan.conwaygol.Game.SimpleGameOfLife;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Booleans;
@@ -13,31 +13,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Tests GameOfLife functionality for each implementation
+ * Tests BaseGameOfLife functionality for each implementation
  *
  * Created by jevan on 8/2/2016.
  */
 public class GameTest extends TestCase {
-    private List<GameOfLife> games;
+    private List<BaseGameOfLife> games;
     private List<ArrayList<Boolean>> initial1;
 
     @Override
     protected void setUp() throws Exception {
-        super.setUp();
-        // create games
-        games = new ArrayList<>(Lists.newArrayList(
-                (GameOfLife) new SimpleGameOfLife()
-        ));
         // set up initial states
         initial1 = new ArrayList<>(Lists.newArrayList(
                 new ArrayList<>(Booleans.asList(true, false, false)),   // 1 0 0
                 new ArrayList<>(Booleans.asList(false, true, false)),   // 0 1 0
                 new ArrayList<>(Booleans.asList(true, false, true))     // 1 0 1
         ));
-        // set the initial state in each game
-        for (GameOfLife g : games) {
-            g.setInitialState(initial1);
-        }
+        // create games
+        games = new ArrayList<>(Lists.newArrayList(
+                (BaseGameOfLife) new SimpleGameOfLife(initial1)
+        ));
     }
 
     @Test
@@ -50,7 +45,7 @@ public class GameTest extends TestCase {
         ));
         // time-step each game
         // compare new state with correct
-        for (GameOfLife g : games) {
+        for (BaseGameOfLife g : games) {
             System.out.println("Initial:");
             g.print();
             g.timeStep();

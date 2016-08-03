@@ -47,7 +47,7 @@ public class NeighborCounterTest extends TestCase {
 
     @Test
     public void testCountNeighbors() throws Exception {
-        simple.getPopulation(testGrid1);
+        simple.setPopulation(testGrid1);
         for (int i = 0; i < testGrid1.size(); i++) {
             List<Boolean> row = testGrid1.get(1);
             for (int j = 0; j < row.size(); j++) {

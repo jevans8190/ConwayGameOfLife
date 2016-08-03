@@ -14,7 +14,7 @@ public interface NeighborCounter {
      * Set the population, which is a 2d List of booleans
      * representing alive/dead cells to count neighbors of
      */
-    void getPopulation(List<ArrayList<Boolean>> grid);
+    void setPopulation(List<ArrayList<Boolean>> grid);
 
     /**
      * Counts neighbors touching a given cell

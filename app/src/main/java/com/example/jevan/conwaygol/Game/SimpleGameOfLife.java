@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Simple implementation of GameOfLife
+ * Simple implementation of BaseGameOfLife
  *
  * When time-stepping, this game creates a new grid of cells.
  * While iterating through each cell in the previous state, it marks the
@@ -12,49 +12,38 @@ import java.util.List;
  *
  * Created by jevan on 8/2/2016.
  */
-public class SimpleGameOfLife implements GameOfLife{
-    private NeighborCounter mNeighborCounter;
-    private List<ArrayList<Boolean>> grid;
-    private int rows, cols;
+public class SimpleGameOfLife extends BaseGameOfLife {
 
-    @Override
-    public List<ArrayList<Boolean>> getState() {
-        return grid;
-    }
-
-    @Override
-    public void setInitialState(List<ArrayList<Boolean>> grid) {
-        this.grid = grid;
-        this.rows = grid.size();
-        this.cols = grid.get(0).size();
-        // Initialize mNeighborCounter
-        // Give it the initial state
+    public SimpleGameOfLife(List<ArrayList<Boolean>> grid) {
+        super(grid);
+        // Initialize neighbor listener
+        // set it's initial state
         mNeighborCounter = new SimpleNeighborCounter();
-        mNeighborCounter.getPopulation(grid);
+        mNeighborCounter.setPopulation(mGrid);
     }
 
     @Override
     public void timeStep() {
         // Create a copy of grid
-        List<ArrayList<Boolean>> nextGeneration = new ArrayList<>(rows);
-        for (int i = 0; i < rows; i++) {
-            List<Boolean> row = grid.get(i);
+        List<ArrayList<Boolean>> nextGeneration = new ArrayList<ArrayList<Boolean>>(nRows);
+        for (int i = 0; i < nRows; i++) {
+            List<Boolean> row = mGrid.get(i);
             ArrayList<Boolean> temp = new ArrayList<>();
-            for(int j = 0; j < cols; j++) {
+            for(int j = 0; j < nCols; j++) {
                 temp.add(aliveNextRound(row.get(j), mNeighborCounter.getNeighbors(i, j)));
             }
             nextGeneration.add(temp);
         }
         // replace the grid with the new generation
-        grid = nextGeneration;
+        mGrid = nextGeneration;
     }
 
     @Override
     public void print() {
-        for (int i = 0; i < rows; i++) {
-            List<Boolean> row = grid.get(i);
+        for (int i = 0; i < nRows; i++) {
+            List<Boolean> row = mGrid.get(i);
             String line = "";
-            for (int j = 0; j < cols; j++) {
+            for (int j = 0; j < nCols; j++) {
                 line += (row.get(j) ? 1 : 0) + " ";
             }
             System.out.println(line);

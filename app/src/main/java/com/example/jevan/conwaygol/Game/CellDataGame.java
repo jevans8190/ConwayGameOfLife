@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Cell data implementation of GameOfLife
+ * Cell data implementation of BaseGameOfLife
  *
  *
  * Created by jevan on 8/2/2016.
  */
-public class CellDataGame implements GameOfLife {
+public class CellDataGame extends BaseGameOfLife{
     private List<ArrayList<GridCell>> grid;
 
     @Override
@@ -17,9 +17,9 @@ public class CellDataGame implements GameOfLife {
         return null;
     }
 
-    @Override
-    public void setInitialState(List<ArrayList<Boolean>> grid) {
 
+    public CellDataGame(List<ArrayList<Boolean>> grid) {
+        super(grid);
     }
 
     @Override

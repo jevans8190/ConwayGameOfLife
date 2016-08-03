@@ -13,7 +13,7 @@ public class SimpleNeighborCounter implements NeighborCounter{
     int rows; int cols;
 
     @Override
-    public void getPopulation(List<ArrayList<Boolean>> grid) {
+    public void setPopulation(List<ArrayList<Boolean>> grid) {
         this.grid = grid;
         rows = grid.size();
         cols = (rows == 0) ? 0 : grid.get(0).size();
