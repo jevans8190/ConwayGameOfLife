@@ -12,7 +12,10 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Tests for accuracy and performance of the NeighborCounter implementations
@@ -53,11 +56,38 @@ public class NeighborCounterTest extends TestCase {
         for (int i = 0; i < neighborsGrid1.size(); i++) {
             for (int j = 0; j < neighborsGrid1.get(0).size(); j++) {
                 for (NeighborCounter c : counters) {
-                    System.out.print(c.getNeighbors(i, j) + " ");
-                    assertEquals(c.getNeighbors(i,j), (int) neighborsGrid1.get(i).get(j));
+                    assertEquals(c.getNeighbors(i, j), (int) neighborsGrid1.get(i).get(j));
                 }
-                System.out.println();
             }
+        }
+    }
+
+    @Test
+    public void testPerformance() throws Exception {
+        // create test array of random booleans
+        // time how long each counter takes to compute each cell
+        int testX, testY;
+        testX = testY = 10000;
+        Random random = new Random();
+        List<ArrayList<Boolean>> test = new ArrayList<>(testX);
+        Boolean[] temp;
+        for (int i = 0; i < testX; i++) {
+            temp = new Boolean[testY];
+            for (int j = 0; j < testY; j++){
+                temp[j] = random.nextBoolean();
+            }
+            test.add(new ArrayList<>(Arrays.asList(temp)));
+        }
+        for (NeighborCounter c : counters) {
+            c.setPopulation(test);
+            long timeStart = System.currentTimeMillis();
+            for (int i = 0; i < testX; i++) {
+                for (int j = 0; j < testY; j++) {
+                    c.getNeighbors(i, j);
+                }
+            }
+            long timeEnd = System.currentTimeMillis();
+            System.out.println(c.getClass().getSimpleName() + ": " + (timeEnd - timeStart));
         }
     }
 }
